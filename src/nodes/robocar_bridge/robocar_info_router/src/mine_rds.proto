@@ -1,0 +1,21 @@
+// ****************************************
+// 仿真远程驾驶通信协议(RoboCar-RDS-Protocol)
+// ****************************************
+
+syntax = "proto3";
+package robocar_rds;
+
+message Protocol{
+  VehMessage veh_message = 1;
+  RdsMessage rds_message = 2;
+}
+
+message VehMessage {
+  double linear_x = 1;
+  double angular_z = 2;
+}
+
+message RdsMessage {
+  double linear_x = 1;
+  double angular_z = 2;
+}

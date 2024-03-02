@@ -1,0 +1,17 @@
+<launch>
+  <arg name="model" default="$(env ROBOCAR_MODEL)" doc="model type [burger, waffle, waffle_pi]"/>
+
+  <param name="rc3_model" value="$(arg model)"/>
+
+  <include file="$(find robocar_fake)/launch/includes/description.launch.xml">
+    <arg name="model" value="$(arg model)" />
+  </include>
+
+  <node pkg="robocar_fake" type="robocar_fake" name="robocar_fake" output="screen" />
+
+  <node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher" output="screen">
+    <param name="publish_frequency" type="double" value="50.0" />
+  </node>
+
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find robocar_fake)/rviz/robocar_fake.rviz"/>
+</launch>
